@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Acessar</h2>
+  <form method="post">
+    <label>E-mail</label>
+    <input type="email" name="email" required placeholder="seuemail@pinho.com">
+    <label>Senha</label>
+    <input type="password" name="password" required placeholder="******">
+    <button type="submit">Entrar</button>
+  </form>
+  <p class="muted">Demo: <code>admin@pinho.com</code>/<code>admin123</code> ou <code>joao@pinho.com</code>/<code>123456</code></p>
+</div>
+{% endblock %}

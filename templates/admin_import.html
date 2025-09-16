@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Importar Faturas (CSV)</h2>
+  <p>Modelo: <code>invoice_number,date,client,service_type,amount,paid,consultant_email</code></p>
+  <form method="post" enctype="multipart/form-data">
+    <input type="file" name="file" accept=".csv" required>
+    <button type="submit">Importar</button>
+  </form>
+</div>
+{% endblock %}

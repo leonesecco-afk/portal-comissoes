@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="grid">
+  <div class="card metric"><h3>Total de Notas</h3><div class="value">{{ total }}</div></div>
+  <div class="card metric"><h3>Valor Faturado</h3><div class="value">R$ {{ "%.2f"|format(total_valor) }}</div></div>
+  <div class="card metric"><h3>Comissão</h3><div class="value">R$ {{ "%.2f"|format(total_comissao) }}</div></div>
+</div>
+<div class="card">
+  <h2>Bem-vindo, {{ current_user.name }}!</h2>
+  <p>Use o menu para consultar as suas notas e exportar o CSV. Administradores podem importar faturas e recalcular comissões.</p>
+</div>
+{% endblock %}

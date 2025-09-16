@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Notas com Comissão</h2>
+  <form class="filters" method="get">
+    <div><label>Início</label><input type="date" name="start" value="{{ request.args.get('start','') }}"></div>
+    <div><label>Fim</label><input type="date" name="end" value="{{ request.args.get('end','') }}"></div>
+    <div><label>Cliente</label><input type="text" name="client" placeholder="Cliente" value="{{ request.args.get('client','') }}"></div>
+    <div><label>Serviço</label><input type="text" name="service" placeholder="Tipo de serviço" value="{{ request.args.get('service','') }}"></div>
+    <div><label>Pago?</label>
+      <select name="paid">
+        <option value="">Todos</option>
+        <option value="1" {% if request.args.get('paid')=='1' %}selected{% endif %}>Sim</option>
+        <option value="0" {% if request.args.get('paid')=='0' %}selected{% endif %}>Não</option>
+      </select>
+    </div>
+    <button type="submit">Aplicar Filtros</button>
+  </form>
+  <table class="table">
+    <thead><tr><th>Data</th><th>Nota</th><th>Cliente</th><th>Serviço</th><th>Valor</th><th>%</th><th>Comissão</th><th>Pago</th></tr></thead>
+    <tbody>
+      {% for i in invoices %}
+      <tr>
+        <td>{{ i.date.isoformat() }}</td>
+        <td>{{ i.invoice_number }}</td>
+        <td>{{ i.client }}</td>
+        <td>{{ i.service_type }}</td>
+        <td>R$ {{ "%.2f"|format(i.amount) }}</td>
+        <td>{{ "%.2f"|format(i.commission_rate*100) }}%</td>
+        <td>R$ {{ "%.2f"|format(i.commission_value) }}</td>
+        <td>{{ "Sim" if i.paid else "Não" }}</td>
+      </tr>
+      {% else %}
+      <tr><td colspan="8">Nenhuma nota encontrada.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
