@@ -1,0 +1,8 @@
+{
+  "name": "Portal de Comissões",
+  "env": {
+    "SECRET_KEY": {"description":"Chave de sessão Flask","generator":"secret"},
+    "DATABASE_URL": {"description":"URL do banco","value":"sqlite:///commission.db"}
+  },
+  "scripts": { "postdeploy": "python seed.py" }
+}
